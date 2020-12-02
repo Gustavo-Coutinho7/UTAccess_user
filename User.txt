@@ -1,0 +1,38 @@
+npm install @react-navigation/native
+
+npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view @react-navigation/bottom-tabs @react-navigation/stack @react-navigation/drawer
+
+npm install react-native-maps --save-exact
+
+npm i @react-native-community/async-storage @react-native-community/geolocation react-native-android-location-enabler buffer react-native-geocoding react-native-open-maps react-native-maps-directions react_native_mqtt react-native-uuid react-native-google-places-autocomplete
+
+android/settings.gradle:
+include ':react-native-maps'
+project(':react-native-maps').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-maps/lib/android')
+
+android/app/build.gradle:
+dependencies {
+  ...
+  implementation project(':react-native-maps')
+}
+
+android/build.gradle:
+ext {
+    supportLibVersion   = "29.0.0"
+    playServicesVersion = "17.0.0" // or find latest version
+    androidMapsUtilsVersion = "+0.5"
+}
+
+androidManifest: 
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<application 
+...
+>
+<meta-data
+android:name="com.google.android.geo.API_KEY"
+android:value="AIzaSyDJANTANzQey3Qe8yBpjbskbyH7KnuOqws"/>
+<activity
+...
+>
+
